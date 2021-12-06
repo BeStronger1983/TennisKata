@@ -1,0 +1,17 @@
+{
+  "name": "extreme-developing-training-202111",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ponpon",
+  "license": "MIT",
+  "dependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "babel-jest": "^27.4.2",
+    "jest": "^27.4.3"
+  }
+}
