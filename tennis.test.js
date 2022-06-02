@@ -2,16 +2,21 @@ import {Tennis} from "./tennis";
 
 describe('score', function () {
     beforeEach(() => {
-        tennis = new Tennis('Joey');
+        tennis = new Tennis('Joey', 'Tom');
     });
-    let tennis = new Tennis('Joey');
+    let tennis = new Tennis('Joey', 'Tom');
+
+    function scoreShouldBe(expected) {
+        expect(tennis.score()).toBe(expected);
+    }
+
     it('should be love all', function () {
-        expect(tennis.score()).toBe('love all');
+        scoreShouldBe('love all');
     });
 
     it('should be fifteen love', function () {
         givenFirstPlayerScoreTimes(1);
-        expect(tennis.score()).toBe('fifteen love');
+        scoreShouldBe('fifteen love');
     });
 
     function givenFirstPlayerScoreTimes(times) {
@@ -22,17 +27,17 @@ describe('score', function () {
 
     it('should be thirty love', function () {
         givenFirstPlayerScoreTimes(2);
-        expect(tennis.score()).toBe('thirty love');
+        scoreShouldBe('thirty love');
     });
 
     it('should be forty love', function () {
         givenFirstPlayerScoreTimes(3);
-        expect(tennis.score()).toBe('forty love');
+        scoreShouldBe('forty love');
     });
 
     it('should be love fifteen', function () {
         givenSecondPlayerScoreTimes(1);
-        expect(tennis.score()).toBe('love fifteen');
+        scoreShouldBe('love fifteen');
     });
 
     function givenSecondPlayerScoreTimes(times) {
@@ -43,44 +48,48 @@ describe('score', function () {
 
     it('should be love thirty', function () {
         givenSecondPlayerScoreTimes(2);
-        expect(tennis.score()).toBe('love thirty');
+        scoreShouldBe('love thirty');
     });
 
     it('should be fifteen all', function () {
         givenFirstPlayerScoreTimes(1);
         givenSecondPlayerScoreTimes(1);
-        expect(tennis.score()).toBe('fifteen all');
+        scoreShouldBe('fifteen all');
     });
 
     it('should be thirty all', function () {
         givenFirstPlayerScoreTimes(2);
         givenSecondPlayerScoreTimes(2);
-        expect(tennis.score()).toBe('thirty all');
+        scoreShouldBe('thirty all');
     });
 
-    function giveDeuce() {
+    function givenDeuce() {
         givenFirstPlayerScoreTimes(3);
         givenSecondPlayerScoreTimes(3);
     }
 
     it('should be deuce', function () {
-        giveDeuce();
-        expect(tennis.score()).toBe('deuce');
+        givenDeuce();
+        scoreShouldBe('deuce');
     });
 
     it('should be first player adv', function () {
-        giveDeuce();
+        givenDeuce();
         givenFirstPlayerScoreTimes(1);
-        expect(tennis.score()).toBe('Joey adv');
+        scoreShouldBe('Joey adv');
     });
 
     it('should be second player adv', function () {
-        giveDeuce();
+        givenDeuce();
         givenSecondPlayerScoreTimes(1);
-        expect(tennis.score()).toBe('Tom adv');
+        scoreShouldBe('Tom adv');
     });
 
-
+    it('should be second player win', function () {
+        givenDeuce();
+        givenSecondPlayerScoreTimes(2);
+        scoreShouldBe('Tom win');
+    });
 
 
 });

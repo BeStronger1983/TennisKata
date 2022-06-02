@@ -1,6 +1,7 @@
 export class Tennis {
-    constructor(firstPlayerName) {
+    constructor(firstPlayerName, secondPlayerName) {
         this.firstPlayerName = firstPlayerName;
+        this.secondPlayerName = secondPlayerName;
     }
 
     firstPlayerScoreTimes = 0;
@@ -15,20 +16,40 @@ export class Tennis {
 
     firstPlayerName;
 
+    secondPlayerName;
+
     score() {
-        if (this.isScoreDifferent()) {
-            if (this.firstPlayerScoreTimes > 3 || this.secondPlayerScoreTimes > 3) {
-                if (Math.abs(this.firstPlayerScoreTimes - this.secondPlayerScoreTimes) === 1) {
-                    let advPlayer = this.firstPlayerScoreTimes > this.secondPlayerScoreTimes ? this.firstPlayerName : 'Tom';
-                    return advPlayer + ' adv';
-                }
-            }
-            return this.lookupScore();
+        return this.isScoreDifferent()
+            ? this.isReadyForGamePoint() ? this.advState() : this.lookupScore()
+            : this.isDeuce() ? this.deuce() : this.sameScore();
+    }
+
+    advState() {
+        if (this.isAdv()) {
+            return this.advScore();
         }
-        if (this.isDeuce()) {
-            return this.deuce();
-        }
-        return this.sameScore();
+        return this.winScore();
+    }
+
+    isReadyForGamePoint() {
+        return this.firstPlayerScoreTimes > 3 || this.secondPlayerScoreTimes > 3;
+    }
+
+    winScore() {
+        return `${this.advPlayer()} win`;
+    }
+
+    advScore() {
+        return `${this.advPlayer()} adv`;
+    }
+
+    isAdv() {
+        return Math.abs(this.firstPlayerScoreTimes - this.secondPlayerScoreTimes) === 1;
+    }
+
+    advPlayer() {
+        let advPlayer = this.firstPlayerScoreTimes > this.secondPlayerScoreTimes ? this.firstPlayerName : this.secondPlayerName;
+        return advPlayer;
     }
 
     isScoreDifferent() {
@@ -44,11 +65,11 @@ export class Tennis {
     }
 
     deuce() {
-        return 'deuce'
+        return 'deuce';
     }
 
     sameScore() {
-        return this.scoreLookup[this.firstPlayerScoreTimes] + ' all';
+        return `${this.scoreLookup[this.firstPlayerScoreTimes]} all`;
     }
 
     firstPlayerScore() {
