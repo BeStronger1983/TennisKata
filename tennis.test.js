@@ -2,9 +2,9 @@ import {Tennis} from "./tennis";
 
 describe('score', function () {
     beforeEach(() => {
-        tennis = new Tennis();
+        tennis = new Tennis('Joey', 'Tom');
     });
-    let tennis = new Tennis();
+    let tennis = new Tennis('Joey', 'Tom');
 
     function scoreShouldBe(expected) {
         expect(tennis.score()).toBe(expected);
@@ -62,6 +62,30 @@ describe('score', function () {
         givenFirstPlayerScoreTimes(2);
         scoreShouldBe('thirty all');
     });
+
+    function givenDeuce() {
+        givenSecondPlayerScoreTimes(3);
+        givenFirstPlayerScoreTimes(3);
+    }
+
+    it('should be deuce', function () {
+        givenDeuce();
+        scoreShouldBe('deuce');
+    });
+
+    it('should be first player adv', function () {
+        givenDeuce();
+        givenFirstPlayerScoreTimes(1);
+        scoreShouldBe('Joey adv');
+    });
+
+    it('should be second player adv', function () {
+        givenDeuce();
+        givenSecondPlayerScoreTimes(1);
+        scoreShouldBe('Tom adv');
+    });
+
+
 
 
 });
