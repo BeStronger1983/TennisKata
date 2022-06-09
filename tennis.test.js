@@ -52,20 +52,20 @@ describe('score', function () {
     });
 
     it('should be fifteen all', function () {
-        givenSecondPlayerScoreTimes(1);
         givenFirstPlayerScoreTimes(1);
+        givenSecondPlayerScoreTimes(1);
         scoreShouldBe('fifteen all');
     });
 
     it('should be thirty all', function () {
-        givenSecondPlayerScoreTimes(2);
         givenFirstPlayerScoreTimes(2);
+        givenSecondPlayerScoreTimes(2);
         scoreShouldBe('thirty all');
     });
 
     function givenDeuce() {
-        givenSecondPlayerScoreTimes(3);
         givenFirstPlayerScoreTimes(3);
+        givenSecondPlayerScoreTimes(3);
     }
 
     it('should be deuce', function () {
@@ -85,7 +85,11 @@ describe('score', function () {
         scoreShouldBe('Tom adv');
     });
 
-
+    it('should be second player win', function () {
+        givenDeuce();
+        givenSecondPlayerScoreTimes(2);
+        scoreShouldBe('Tom win');
+    });
 
 
 });

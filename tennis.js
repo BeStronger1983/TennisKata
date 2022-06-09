@@ -19,18 +19,32 @@ export class Tennis {
     secondPlayerName;
 
     score() {
-        if (this.isScoreDifferent()) {
-            if (this.firstPlayerScoreTimes > 3 || this.secondPlayerScoreTimes > 3) {
-                if (Math.abs(this.firstPlayerScoreTimes - this.secondPlayerScoreTimes) === 1) {
-                    return this.advPlayer() + ' adv';
-                }
-            }
-            return this.lookupScore();
+        return this.isScoreDifferent()
+            ? this.isReadyForGamePoint() ? this.advState() : this.lookupScore()
+            : this.isDeuce() ? this.deuce() : this.sameScore();
+    }
+
+    advState() {
+        if (this.isAdv()) {
+            return this.advScore();
         }
-        if (this.isDeuce()) {
-            return this.deuce();
-        }
-        return this.sameScore();
+        return this.winScore();
+    }
+
+    isReadyForGamePoint() {
+        return this.firstPlayerScoreTimes > 3 || this.secondPlayerScoreTimes > 3;
+    }
+
+    winScore() {
+        return `${this.advPlayer()} win`;
+    }
+
+    advScore() {
+        return `${this.advPlayer()} adv`;
+    }
+
+    isAdv() {
+        return Math.abs(this.firstPlayerScoreTimes - this.secondPlayerScoreTimes) === 1;
     }
 
     advPlayer() {
@@ -43,7 +57,7 @@ export class Tennis {
     }
 
     lookupScore() {
-        return `${this.scoreLookup[this.firstPlayerScoreTimes]} ${this.scoreLookup[this.secondPlayerScoreTimes]}`
+        return `${this.scoreLookup[this.firstPlayerScoreTimes]} ${this.scoreLookup[this.secondPlayerScoreTimes]}`;
     }
 
     isDeuce() {
@@ -55,7 +69,7 @@ export class Tennis {
     }
 
     sameScore() {
-        return `${this.scoreLookup[this.firstPlayerScoreTimes]} all`
+        return `${this.scoreLookup[this.firstPlayerScoreTimes]} all`;
     }
 
     firstPlayerScore() {
