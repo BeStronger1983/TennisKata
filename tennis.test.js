@@ -51,6 +51,13 @@ describe('score', function () {
         scoreShouldBe('love thirty');
     });
 
+    it('should be fifteen all', function () {
+        givenFirstPlayerScoreTimes(1);
+        givenSecondPlayerScoreTimes(1);
+        scoreShouldBe('fifteen all');
+    });
+
+
 
 
 });
