@@ -13,6 +13,9 @@ export class Tennis {
         if (this.secondPlayerScoreTimes !== this.firstPlayerScoreTimes) {
             return `${this.scoreLookup[this.firstPlayerScoreTimes]} ${this.scoreLookup[this.secondPlayerScoreTimes]}`;
         }
+        if (this.firstPlayerScoreTimes >= 3) {
+            return 'deuce'
+        }
         return `${this.scoreLookup[this.firstPlayerScoreTimes]} all`;
     }
 
