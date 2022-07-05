@@ -57,7 +57,11 @@ describe('score', function () {
         scoreShouldBe('fifteen all');
     });
 
-
+    it('should be thirty all', function () {
+        givenFirstPlayerScoreTimes(2);
+        givenSecondPlayerScoreTimes(2);
+        scoreShouldBe('thirty all');
+    });
 
 
 });

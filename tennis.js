@@ -13,7 +13,7 @@ export class Tennis {
         if (this.secondPlayerScoreTimes !== this.firstPlayerScoreTimes) {
             return `${this.scoreLookup[this.firstPlayerScoreTimes]} ${this.scoreLookup[this.secondPlayerScoreTimes]}`;
         }
-        return `${this.scoreLookup[this.firstPlayerScoreTimes]} all`
+        return `${this.scoreLookup[this.firstPlayerScoreTimes]} all`;
     }
 
     firstPlayerScore() {
