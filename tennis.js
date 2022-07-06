@@ -10,12 +10,37 @@ export class Tennis {
     secondPlayerScoreTimes = 0;
 
     score() {
-        if (this.secondPlayerScoreTimes !== this.firstPlayerScoreTimes) {
-            return `${this.scoreLookup[this.firstPlayerScoreTimes]} ${this.scoreLookup[this.secondPlayerScoreTimes]}`;
+        if (this.isScoreDifferent()) {
+            if (this.firstPlayerScoreTimes > 3) {
+                if (this.firstPlayerScoreTimes - this.secondPlayerScoreTimes === 1) {
+                    return 'Joey adv';
+                }
+            }
+            return this.lookupScore();
         }
-        if (this.firstPlayerScoreTimes >= 3) {
-            return 'deuce'
+        if (this.isDeuce()) {
+            return this.deuce();
         }
+        return this.sameScore();
+    }
+
+    isScoreDifferent() {
+        return this.secondPlayerScoreTimes !== this.firstPlayerScoreTimes;
+    }
+
+    lookupScore() {
+        return `${this.scoreLookup[this.firstPlayerScoreTimes]} ${this.scoreLookup[this.secondPlayerScoreTimes]}`;
+    }
+
+    isDeuce() {
+        return this.firstPlayerScoreTimes >= 3;
+    }
+
+    deuce() {
+        return 'deuce'
+    }
+
+    sameScore() {
         return `${this.scoreLookup[this.firstPlayerScoreTimes]} all`;
     }
 

@@ -63,11 +63,22 @@ describe('score', function () {
         scoreShouldBe('thirty all');
     });
 
-    it('should be deuce', function () {
+    function giveDeuce() {
         givenFirstPlayerScoreTimes(3);
         givenSecondPlayerScoreTimes(3);
+    }
+
+    it('should be deuce', function () {
+        giveDeuce();
         scoreShouldBe('deuce');
     });
+
+    it('should be first player adv', function () {
+        giveDeuce();
+        givenFirstPlayerScoreTimes(1);
+        scoreShouldBe('Joey adv');
+    });
+
 
 
 
