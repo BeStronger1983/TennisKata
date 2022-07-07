@@ -1,4 +1,8 @@
 export class Tennis {
+    constructor(firstPlayerName) {
+        this.firstPlayerName = firstPlayerName;
+    }
+
     firstPlayerScoreTimes = 0;
 
     scoreLookup = {
@@ -9,11 +13,13 @@ export class Tennis {
     };
     secondPlayerScoreTimes = 0;
 
+    firstPlayerName;
+
     score() {
         if (this.isScoreDifferent()) {
             if (this.firstPlayerScoreTimes > 3) {
                 if (this.firstPlayerScoreTimes - this.secondPlayerScoreTimes === 1) {
-                    return 'Joey adv';
+                    return this.firstPlayerName + ' adv';
                 }
             }
             return this.lookupScore();

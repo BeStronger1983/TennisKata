@@ -2,9 +2,9 @@ import {Tennis} from "./tennis";
 
 describe('score', function () {
     beforeEach(() => {
-        tennis = new Tennis();
+        tennis = new Tennis('Joey');
     });
-    let tennis = new Tennis();
+    let tennis = new Tennis('Joey');
 
     function scoreShouldBe(expected) {
         expect(tennis.score()).toBe(expected);
