@@ -1,6 +1,7 @@
 export class Tennis {
-    constructor(firstPlayerName) {
+    constructor(firstPlayerName, secondPlayerName) {
         this.firstPlayerName = firstPlayerName;
+        this.secondPlayerName = secondPlayerName;
     }
 
     firstPlayerScoreTimes = 0;
@@ -15,11 +16,13 @@ export class Tennis {
 
     firstPlayerName;
 
+    secondPlayerName;
+
     score() {
         if (this.isScoreDifferent()) {
             if (this.firstPlayerScoreTimes > 3 || this.secondPlayerScoreTimes > 3) {
                 if (Math.abs(this.firstPlayerScoreTimes - this.secondPlayerScoreTimes) === 1) {
-                    let advPlayer = this.firstPlayerScoreTimes > this.secondPlayerScoreTimes ? this.firstPlayerName : 'Tom';
+                    let advPlayer = this.firstPlayerScoreTimes > this.secondPlayerScoreTimes ? this.firstPlayerName : this.secondPlayerName;
                     return advPlayer + ' adv';
                 }
             }
