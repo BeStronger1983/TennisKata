@@ -17,9 +17,10 @@ export class Tennis {
 
     score() {
         if (this.isScoreDifferent()) {
-            if (this.firstPlayerScoreTimes > 3) {
-                if (this.firstPlayerScoreTimes - this.secondPlayerScoreTimes === 1) {
-                    return this.firstPlayerName + ' adv';
+            if (this.firstPlayerScoreTimes > 3 || this.secondPlayerScoreTimes > 3) {
+                if (Math.abs(this.firstPlayerScoreTimes - this.secondPlayerScoreTimes) === 1) {
+                    let advPlayer = this.firstPlayerScoreTimes > this.secondPlayerScoreTimes ? this.firstPlayerName : 'Tom';
+                    return advPlayer + ' adv';
                 }
             }
             return this.lookupScore();
