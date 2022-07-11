@@ -65,7 +65,7 @@ export class Tennis {
     }
 
     deuce() {
-        return 'deuce'
+        return 'deuce';
     }
 
     sameScore() {
