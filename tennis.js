@@ -19,19 +19,28 @@ export class Tennis {
     secondPlayerName;
 
     score() {
-        if (this.isScoreDifferent()) {
-            if (this.firstPlayerScoreTimes > 3 || this.secondPlayerScoreTimes > 3) {
-                if (this.isAdv()) {
-                    return `${this.advPlayer()} adv`;
-                }
-                return `${this.advPlayer()} win`;
-            }
-            return this.lookupScore();
+        return this.isScoreDifferent()
+            ? this.isReadyForGamePoint() ? this.advState() : this.lookupScore()
+            : this.isDeuce() ? this.deuce() : this.sameScore();
+    }
+
+    advState() {
+        if (this.isAdv()) {
+            return this.advScore();
         }
-        if (this.isDeuce()) {
-            return this.deuce();
-        }
-        return this.sameScore();
+        return this.winScore();
+    }
+
+    isReadyForGamePoint() {
+        return this.firstPlayerScoreTimes > 3 || this.secondPlayerScoreTimes > 3;
+    }
+
+    winScore() {
+        return `${this.advPlayer()} win`;
+    }
+
+    advScore() {
+        return `${this.advPlayer()} adv`;
     }
 
     isAdv() {
