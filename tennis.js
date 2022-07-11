@@ -21,9 +21,8 @@ export class Tennis {
     score() {
         if (this.isScoreDifferent()) {
             if (this.firstPlayerScoreTimes > 3 || this.secondPlayerScoreTimes > 3) {
-                if (Math.abs(this.firstPlayerScoreTimes - this.secondPlayerScoreTimes) === 1) {
-                    let advPlayer = this.firstPlayerScoreTimes > this.secondPlayerScoreTimes ? this.firstPlayerName : this.secondPlayerName;
-                    return advPlayer + ' adv';
+                if (this.isAdv()) {
+                    return `${this.advPlayer()} adv`;
                 }
             }
             return this.lookupScore();
@@ -32,6 +31,15 @@ export class Tennis {
             return this.deuce();
         }
         return this.sameScore();
+    }
+
+    isAdv() {
+        return Math.abs(this.firstPlayerScoreTimes - this.secondPlayerScoreTimes) === 1;
+    }
+
+    advPlayer() {
+        let advPlayer = this.firstPlayerScoreTimes > this.secondPlayerScoreTimes ? this.firstPlayerName : this.secondPlayerName;
+        return advPlayer;
     }
 
     isScoreDifferent() {
