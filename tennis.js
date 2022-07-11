@@ -24,6 +24,7 @@ export class Tennis {
                 if (this.isAdv()) {
                     return `${this.advPlayer()} adv`;
                 }
+                return `${this.advPlayer()} win`;
             }
             return this.lookupScore();
         }

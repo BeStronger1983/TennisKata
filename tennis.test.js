@@ -85,6 +85,13 @@ describe('score', function () {
         scoreShouldBe('Tom adv');
     });
 
+    it('should be second player win', function () {
+        giveDeuce();
+        givenSecondPlayerScoreTimes(2);
+        scoreShouldBe('Tom win');
+    });
+
+
 
 
 
