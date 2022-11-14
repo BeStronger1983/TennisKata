@@ -4,7 +4,6 @@
   "main": "index.js",
   "author": "ponpon",
   "license": "MIT",
-  "dependencies": {},
   "scripts": {
     "test": "jest"
   },
